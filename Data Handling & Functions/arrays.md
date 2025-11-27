@@ -1,57 +1,15 @@
-# Strings: Text Processing
+# Arrays: Storing Collections
 
-> **Goal:** Manipulate sequences of characters efficiently.
+> **Goal:** Store multiple values of the same type in a single variable.
 
-Strings are fundamental for processing text, parsing input, and solving problems involving patterns or anagrams.
-
----
-
-## 1. Basics & Declaration
-A string is essentially an array of characters.
-
-<details>
-<summary><strong>C++</strong></summary>
-
-```cpp
-#include <string>
-using namespace std;
-
-string s = "Hello";
-cout << s;
-```
-</details>
-
-<details>
-<summary><strong>Java</strong></summary>
-
-```java
-String s = "Hello";
-System.out.println(s);
-```
-</details>
-
-<details>
-<summary><strong>Python</strong></summary>
-
-```python
-s = "Hello"
-print(s)
-```
-</details>
-
-<details>
-<summary><strong>C</strong></summary>
-
-```c
-char s[] = "Hello";
-printf("%s", s);
-```
-</details>
+Arrays are the most fundamental data structure. They allow you to access data instantly using an index.
 
 ---
 
-## 2. Common Operations
-Key operations: Finding length, accessing characters, and joining strings.
+## 1. 1D Arrays (Fixed Size)
+A list of elements with a specific size defined at creation.
+*   **Indexing:** Starts at 0.
+*   **Access:** $O(1)$ time complexity.
 
 ### Code Examples
 
@@ -59,16 +17,18 @@ Key operations: Finding length, accessing characters, and joining strings.
 <summary><strong>C++</strong></summary>
 
 ```cpp
-string s = "Code";
+int arr[5] = {10, 20, 30, 40, 50};
 
-// Length
-int len = s.length(); // 4
+// Accessing
+cout << arr[0] << endl; // 10
 
-// Access
-char c = s[0]; // 'C'
+// Modifying
+arr[2] = 99;
 
-// Concatenation
-string s2 = s + "Forces"; // "CodeForces"
+// Iterating
+for (int i = 0; i < 5; i++) {
+    cout << arr[i] << " ";
+}
 ```
 </details>
 
@@ -76,16 +36,18 @@ string s2 = s + "Forces"; // "CodeForces"
 <summary><strong>Java</strong></summary>
 
 ```java
-String s = "Code";
+int[] arr = {10, 20, 30, 40, 50};
 
-// Length
-int len = s.length(); // 4
+// Accessing
+System.out.println(arr[0]); // 10
 
-// Access
-char c = s.charAt(0); // 'C'
+// Modifying
+arr[2] = 99;
 
-// Concatenation
-String s2 = s + "Forces"; // "CodeForces"
+// Iterating
+for (int i = 0; i < arr.length; i++) {
+    System.out.print(arr[i] + " ");
+}
 ```
 </details>
 
@@ -93,16 +55,18 @@ String s2 = s + "Forces"; // "CodeForces"
 <summary><strong>Python</strong></summary>
 
 ```python
-s = "Code"
+# Python lists act as dynamic arrays
+arr = [10, 20, 30, 40, 50]
 
-# Length
-length = len(s) # 4
+// Accessing
+print(arr[0]) # 10
 
-# Access
-c = s[0] # 'C'
+// Modifying
+arr[2] = 99
 
-# Concatenation
-s2 = s + "Forces" # "CodeForces"
+// Iterating
+for x in arr:
+    print(x, end=" ")
 ```
 </details>
 
@@ -110,73 +74,171 @@ s2 = s + "Forces" # "CodeForces"
 <summary><strong>C</strong></summary>
 
 ```c
-#include <string.h>
+int arr[5] = {10, 20, 30, 40, 50};
 
-char s[20] = "Code";
+// Accessing
+printf("%d\n", arr[0]); // 10
 
-// Length
-int len = strlen(s); // 4
+// Modifying
+arr[2] = 99;
 
-// Access
-char c = s[0]; // 'C'
-
-// Concatenation
-strcat(s, "Forces"); // s becomes "CodeForces"
+// Iterating
+for (int i = 0; i < 5; i++) {
+    printf("%d ", arr[i]);
+}
 ```
 </details>
 
 ---
 
-## 3. Mutability (Important!)
-*   **Mutable (Changeable):** C++, C. You can change `s[0] = 'X'`.
-*   **Immutable (Unchangeable):** Java, Python. You **cannot** do `s[0] = 'X'`. You must create a new string.
+## 2. Dynamic Arrays (Resizable)
+Used when you don't know the size beforehand or it changes.
+*   **C++:** `std::vector`
+*   **Java:** `ArrayList`
+*   **Python:** `list` (Default)
+
+### Code Examples
 
 <details>
-<summary><strong>C++ (Mutable)</strong></summary>
+<summary><strong>C++ (Vector)</strong></summary>
 
 ```cpp
-string s = "Hello";
-s[0] = 'J'; 
-// s is now "Jello"
+#include <vector>
+using namespace std;
+
+vector<int> v;
+v.push_back(10); // Add to end
+v.push_back(20);
+
+cout << v.size(); // 2
 ```
 </details>
 
 <details>
-<summary><strong>Java (Immutable)</strong></summary>
+<summary><strong>Java (ArrayList)</strong></summary>
 
 ```java
-String s = "Hello";
-// s.charAt(0) = 'J'; // ERROR!
-s = "J" + s.substring(1); // Creates NEW string "Jello"
+import java.util.ArrayList;
+
+ArrayList<Integer> list = new ArrayList<>();
+list.add(10); // Add to end
+list.add(20);
+
+System.out.println(list.size()); // 2
 ```
 </details>
 
 <details>
-<summary><strong>Python (Immutable)</strong></summary>
+<summary><strong>Python (List)</strong></summary>
 
 ```python
-s = "Hello"
-# s[0] = 'J' # ERROR!
-s = "J" + s[1:] # Creates NEW string "Jello"
+v = []
+v.append(10) # Add to end
+v.append(20)
+
+print(len(v)) # 2
+```
+</details>
+
+<details>
+<summary><strong>C</strong></summary>
+
+```c
+// C does not have built-in dynamic arrays.
+// You must use malloc/realloc manually (complex).
+// In contests, just declare a large fixed array:
+int arr[100005]; 
+int size = 0;
+arr[size++] = 10;
+```
+</details>
+
+---
+
+## 3. 2D Arrays (Matrices)
+Used for grids, mazes, and tables. Think of it as an "array of arrays".
+
+### Code Examples
+
+<details>
+<summary><strong>C++</strong></summary>
+
+```cpp
+int grid[3][3] = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+cout << grid[1][2]; // Row 1, Col 2 -> 6
+```
+</details>
+
+<details>
+<summary><strong>Java</strong></summary>
+
+```java
+int[][] grid = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+System.out.println(grid[1][2]); // 6
+```
+</details>
+
+<details>
+<summary><strong>Python</strong></summary>
+
+```python
+grid = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+print(grid[1][2]) # 6
+```
+</details>
+
+<details>
+<summary><strong>C</strong></summary>
+
+```c
+int grid[3][3] = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+printf("%d", grid[1][2]); // 6
 ```
 </details>
 
 ---
 
 ## 4. Problem Solving Patterns
+Knowing syntax isn't enough. Here are the standard techniques used to solve array problems.
 
-### Pattern A: Iterating Characters
-**Problem:** Count the number of 'A's in a string.
+### Pattern A: Frequency Array (Counting)
+**Problem:** Given $N$ numbers (all $< 100$), count how many times each number appears.
+**Idea:** Use the *value* of the number as the *index* of a count array.
 
 <details>
 <summary><strong>C++</strong></summary>
 
 ```cpp
-string s = "BANANA";
-int count = 0;
-for (char c : s) {
-    if (c == 'A') count++;
+int n = 7;
+int arr[] = {1, 5, 1, 2, 5, 5, 3};
+int count[101] = {0}; // Initialize with 0
+
+for (int i = 0; i < n; i++) {
+    count[arr[i]]++; // Increment index corresponding to value
 }
+
+// count[5] is now 3
+// count[1] is now 2
 ```
 </details>
 
@@ -184,10 +246,11 @@ for (char c : s) {
 <summary><strong>Java</strong></summary>
 
 ```java
-String s = "BANANA";
-int count = 0;
-for (char c : s.toCharArray()) {
-    if (c == 'A') count++;
+int[] arr = {1, 5, 1, 2, 5, 5, 3};
+int[] count = new int[101]; // Java inits to 0 by default
+
+for (int x : arr) {
+    count[x]++;
 }
 ```
 </details>
@@ -196,23 +259,47 @@ for (char c : s.toCharArray()) {
 <summary><strong>Python</strong></summary>
 
 ```python
-s = "BANANA"
-count = 0
-for c in s:
-    if c == 'A': count += 1
+arr = [1, 5, 1, 2, 5, 5, 3]
+count = [0] * 101
+
+for x in arr:
+    count[x] += 1
 ```
 </details>
 
-### Pattern B: Substrings
-**Problem:** Extract the first 3 characters.
+<details>
+<summary><strong>C</strong></summary>
+
+```c
+int arr[] = {1, 5, 1, 2, 5, 5, 3};
+int count[101] = {0};
+
+for (int i = 0; i < 7; i++) {
+    count[arr[i]]++;
+}
+```
+</details>
+
+### Pattern B: Prefix Sums (Range Queries)
+**Problem:** Calculate the sum of elements from index $L$ to $R$ many times.
+**Idea:** Precompute a running total. `Sum(L, R) = P[R] - P[L-1]`.
 
 <details>
 <summary><strong>C++</strong></summary>
 
 ```cpp
-string s = "HelloWorld";
-// substr(start_index, length)
-string sub = s.substr(0, 3); // "Hel"
+int arr[] = {10, 20, 30, 40, 50};
+int P[6] = {0}; // 1-based prefix array usually easier
+
+// Build Prefix Array
+for (int i = 0; i < 5; i++) {
+    P[i+1] = P[i] + arr[i];
+}
+// P is {0, 10, 30, 60, 100, 150}
+
+// Sum from index 1 to 3 (20+30+40 = 90)
+// In 1-based P, this corresponds to P[4] - P[1]
+int sum = P[4] - P[1]; // 100 - 10 = 90
 ```
 </details>
 
@@ -220,9 +307,14 @@ string sub = s.substr(0, 3); // "Hel"
 <summary><strong>Java</strong></summary>
 
 ```java
-String s = "HelloWorld";
-// substring(start_index, end_index_exclusive)
-String sub = s.substring(0, 3); // "Hel"
+int[] arr = {10, 20, 30, 40, 50};
+int[] P = new int[6];
+
+for (int i = 0; i < 5; i++) {
+    P[i+1] = P[i] + arr[i];
+}
+
+int sum = P[4] - P[1]; // 90
 ```
 </details>
 
@@ -230,36 +322,94 @@ String sub = s.substring(0, 3); // "Hel"
 <summary><strong>Python</strong></summary>
 
 ```python
-s = "HelloWorld"
-# s[start : end_exclusive]
-sub = s[0:3] # "Hel"
+arr = [10, 20, 30, 40, 50]
+P = [0] * 6
+
+for i in range(5):
+    P[i+1] = P[i] + arr[i]
+
+sum_val = P[4] - P[1] # 90
 ```
 </details>
 
-### Pattern C: Efficient Building
-**Problem:** Append numbers 0 to 1000 to a string.
-*   **Bad:** `s += str(i)` (Slow in Java/Python due to immutability).
-*   **Good:** Use a Builder.
+<details>
+<summary><strong>C</strong></summary>
+
+```c
+int arr[] = {10, 20, 30, 40, 50};
+int P[6] = {0};
+
+for (int i = 0; i < 5; i++) {
+    P[i+1] = P[i] + arr[i];
+}
+
+int sum = P[4] - P[1];
+```
+</details>
+
+### Pattern C: Two Pointers (Reversing)
+**Problem:** Reverse an array without creating a new one.
+**Idea:** Swap the first and last elements, then move inward.
 
 <details>
-<summary><strong>Java (StringBuilder)</strong></summary>
+<summary><strong>C++</strong></summary>
+
+```cpp
+int arr[] = {1, 2, 3, 4, 5};
+int L = 0, R = 4;
+
+while (L < R) {
+    swap(arr[L], arr[R]);
+    L++;
+    R--;
+}
+```
+</details>
+
+<details>
+<summary><strong>Java</strong></summary>
 
 ```java
-StringBuilder sb = new StringBuilder();
-for (int i = 0; i < 1000; i++) {
-    sb.append(i);
+int[] arr = {1, 2, 3, 4, 5};
+int L = 0, R = 4;
+
+while (L < R) {
+    int temp = arr[L];
+    arr[L] = arr[R];
+    arr[R] = temp;
+    L++;
+    R--;
 }
-String res = sb.toString();
 ```
 </details>
 
 <details>
-<summary><strong>Python (List Join)</strong></summary>
+<summary><strong>Python</strong></summary>
 
 ```python
-parts = []
-for i in range(1000):
-    parts.append(str(i))
-res = "".join(parts)
+arr = [1, 2, 3, 4, 5]
+L, R = 0, 4
+
+while L < R:
+    arr[L], arr[R] = arr[R], arr[L]
+    L += 1
+    R -= 1
+```
+</details>
+
+<details>
+<summary><strong>C</strong></summary>
+
+```c
+int arr[] = {1, 2, 3, 4, 5};
+int L = 0, R = 4;
+
+while (L < R) {
+    int temp = arr[L];
+    arr[L] = arr[R];
+    arr[R] = temp;
+    L++;
+    R--;
+}
 ```
 </details>
