@@ -205,6 +205,17 @@ print(grid[1][2]) # 6
 <details>
 <summary><strong>C</strong></summary>
 
+```c
+int grid[3][3] = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+printf("%d", grid[1][2]); // 6
+```
+</details>
+
 ---
 
 ## 4. Problem Solving Patterns
