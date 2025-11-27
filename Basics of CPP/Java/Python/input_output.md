@@ -6,8 +6,12 @@ In competitive programming, reading $10^6$ integers can take longer than process
 
 ---
 
-## 1. Standard I/O
-The basic way to read from the console and print to it.
+## 1. Standard Input/Output (I/O) is how your program interacts with the outside world (the judge system or a user).
+
+### Theory: Streams & Buffers
+*   **Streams:** Data flows in and out of your program like a stream of water. `stdin` (Standard Input) and `stdout` (Standard Output) are the default streams.
+*   **Buffers:** To be efficient, computers don't send data one character at a time. They collect data in a temporary storage area called a **buffer**. When the buffer is full (or flushed), a big chunk is sent at once.
+*   **Why Fast I/O?** `cin`/`cout` (C++) and `Scanner` (Java) often flush the buffer too frequently or synchronize streams unnecessarily, causing slowness. Disabling this synchronization allows the buffer to fill up, reducing the number of expensive I/O operations.
 
 ### Code Examples
 
