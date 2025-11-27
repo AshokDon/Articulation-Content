@@ -4,6 +4,12 @@
 
 Operators are the symbols that tell the compiler to perform specific mathematical or logical manipulations.
 
+### Theory: Precedence & Associativity
+Just like in math ($3 + 4 \times 5 = 23$, not $35$), programming operators have an order of operations.
+*   **Precedence:** Which operator happens first. `*` and `/` happen before `+` and `-`.
+*   **Associativity:** Direction of evaluation (usually Left-to-Right).
+*   **Tip:** When in doubt, use **parentheses `()`**. They have the highest precedence and make your code readable.
+
 ---
 
 ## 1. Arithmetic Operators
